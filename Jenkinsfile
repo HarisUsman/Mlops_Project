@@ -1,29 +1,23 @@
 pipeline {
     agent any
-    
     stages {
-        stage('Checkout') {
+        stage("Stage 1: Installing Dependencies") {
             steps {
-                git 'https://github.com/HarisUsman/Mlops_Project.git'
+                echo "Installing dependencies..."
+                sh "pip3 install black"  
+                sh "pip3 install autopep8"
             }
         }
-        
-        stage('Build') {
+        stage("Stage 2: Code Formatting") {
             steps {
-                sh 'mvn clean install' // Replace with your build command
+                echo "Running black..."
+                build job: 'jobone'
             }
         }
-        
-        stage('Test') {
+        stage("Stage 3: Reviewing Code for Improvements") {
             steps {
-                sh 'mvn test' // Replace with your test command
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                sh 'docker build -t your-image:tag .' // Replace with your deploy command
-                sh 'docker push your-image:tag' // Replace with your deploy command
+                echo "Running autopep8..."
+                build job: 'jobtwo'  
             }
         }
     }
