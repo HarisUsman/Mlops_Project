@@ -11,13 +11,13 @@ pipeline {
         stage("Stage 2: Code Formatting") {
             steps {
                 echo "Running black..."
-                build job: 'jobone'
+                sh "your-black-command-here"
             }
         }
         stage("Stage 3: Reviewing Code for Improvements") {
             steps {
                 echo "Running autopep8..."
-                build job: 'jobtwo'  
+                sh "your-autopep8-command-here"
             }
         }
     }
