@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/HarisUsman/Mlops_Project.git'
+                git branch: 'main', url: 'https://github.com/HarisUsman/Mlops_Project.git'
             }
         }
 
         stage('Build image') {
             steps {
                 script {
-                    docker.build("harisusman100/mlops_project:Model Training.ipynb")
+                    docker.build("harisusman100/mlops_project")
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Test image') {
             steps {
                 script {
-                    docker.image("harisusman100/mlops_project:Model Training.ipynb").inside {
+                    docker.image("harisusman100/mlops_project").inside {
                         echo "Tests passed"
                     }
                 }
@@ -30,8 +30,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-                        docker.image("harisusman100/mlops_project:Model Training.ipynb").push("${env.BUILD_NUMBER}")
-                        docker.image("harisusman100/mlops_project:Model Training.ipynb").push("latest")
+                        docker.image("harisusman100/mlops_project").push("${env.BUILD_NUMBER}")
+                        docker.image("harisusman100/mlops_project").push("latest")
                     }
                 }
             }
