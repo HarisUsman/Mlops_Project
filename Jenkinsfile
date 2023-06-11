@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PYTHON_HOME = "C:\Users\Haris Usman\AppData\Local\Programs\Python\Python310\Scripts" 
+        PYTHON_HOME = "C:\Users\Haris Usman\AppData\Local\Programs\Python\Python310\" 
     }
     stages {
         stage("Stage 1: Installing Dependencies") {
