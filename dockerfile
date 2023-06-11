@@ -14,4 +14,4 @@ RUN pip install numpy pandas scikit-learn matplotlib
 EXPOSE 8888
 
 # Run the Jupyter Notebook
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+CMD ["jupyter", "Model Training.ipynb"]
