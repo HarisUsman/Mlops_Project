@@ -1,0 +1,4 @@
+outs:
+- md5: 01d9715cb75fb28ed80e6a7cd5d5a161
+  size: 415152128
+  path: HOGFeatures.npy
