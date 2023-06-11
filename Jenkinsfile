@@ -4,8 +4,8 @@ pipeline {
         stage("Stage 1: Installing Dependencies") {
             steps {
                 echo "Installing dependencies..."
-                bat "pip install black"  
-                bat "pip install autopep8"
+                bat "pip3 install black"  
+                bat "pip3 install autopep8"
             }
         }
         stage("Stage 2: Code Formatting") {
