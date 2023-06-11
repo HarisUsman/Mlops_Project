@@ -1,4 +1,3 @@
-
 FROM jupyter/base-notebook:latest
 
 COPY "Model Training.ipynb" /home/jovyan/work/
