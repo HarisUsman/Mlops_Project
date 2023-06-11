@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "${tool 'Python'}/Scripts:${env.PATH}"
+    }
     stages {
         stage("Stage 1: Installing Dependencies") {
             steps {
