@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone repository') {
+            steps {
+                git 'https://github.com/HarisUsman/Mlops_Project.git'
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                script {
+                    docker.build("harisusman100/mlops_project:Model Training.ipynb")
+                }
+            }
+        }
+
+        stage('Test image') {
+            steps {
+                script {
+                    docker.image("harisusman100/mlops_project:Model Training.ipynb").inside {
+                        echo "Tests passed"
+                    }
+                }
+            }
+        }
+
+        stage('Push image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+                        docker.image("harisusman100/mlops_project:Model Training.ipynb").push("${env.BUILD_NUMBER}")
+                        docker.image("harisusman100/mlops_project:Model Training.ipynb").push("latest")
+                    }
+                }
+            }
+        }
+    }
+}
