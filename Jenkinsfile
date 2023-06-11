@@ -23,5 +23,14 @@ pipeline {
                 bat "\"${PYTHON_HOME}/Scripts/autopep8.exe\" --in-place --recursive ."
             }
         }
+        stage("Stage 4: Building and Running Docker Image") {
+            steps {
+                echo "Building Docker image..."
+                bat "docker build -t my-jupyter-image ."
+                
+                echo "Running Docker container..."
+                bat "docker run -p 8888:8888 --name my-jupyter-container my-jupyter-image"
+            }
+        }
     }
 }
